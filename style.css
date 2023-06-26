@@ -89,3 +89,13 @@ h2 {
 footer {
   font-weight: bold;
 }
+
+/* utility */
+
+section.disable img {
+  cursor: not-allowed;
+}
+
+section.disable img:hover {
+  border: 5px solid transparent;
+}

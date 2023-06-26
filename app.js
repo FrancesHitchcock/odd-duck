@@ -7,6 +7,7 @@ const productImage3 = document.querySelector("section img:nth-child(4)");
 const productSection = document.querySelector("section");
 
 let rounds = 0;
+const maxRounds = 5;
 
 productSection.addEventListener("click", handleProductClick);
 
@@ -57,8 +58,19 @@ function handleProductClick(event) {
   if (event.target.tagName === "IMG") {
     rounds++;
 
+    let selectedProductName = event.target.alt;
+
+    for (let i = 0; i < allProducts.length; i++) {
+      if (allProducts[i].name === selectedProductName) {
+        allProducts[i].timesClicked++;
+      }
+    }
+
+    if (rounds === maxRounds) {
+      productSection.removeEventListener("click", handleProductClick);
+      productSection.classList.add("disable");
+    }
     renderProducts();
-    console.log(rounds);
   }
   return;
 }
