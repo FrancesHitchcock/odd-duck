@@ -5,6 +5,7 @@ const productImage1 = document.querySelector("section img:nth-child(2)");
 const productImage2 = document.querySelector("section img:nth-child(3)");
 const productImage3 = document.querySelector("section img:nth-child(4)");
 const productSection = document.querySelector("section");
+const resultsButton = document.querySelector("button");
 
 let rounds = 0;
 const maxRounds = 5;
@@ -69,10 +70,18 @@ function handleProductClick(event) {
     if (rounds === maxRounds) {
       productSection.removeEventListener("click", handleProductClick);
       productSection.classList.add("disable");
+      resultsButton.disabled = false;
+      resultsButton.addEventListener("click", displayResults);
     }
     renderProducts();
   }
   return;
+}
+
+// WORK ON THIS FUNCTION TOMORROW
+
+function displayResults() {
+  console.log("results");
 }
 
 const bag = new Product("bag");
