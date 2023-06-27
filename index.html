@@ -3,9 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Help your company select their next fab product for development."
+    />
     <title>Odd Duck</title>
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style.css" />
+    <!-- this cdn is required for using chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
     <div class="wrapper">
@@ -13,15 +19,21 @@
         <h1>Odd Duck</h1>
       </header>
       <main>
-        <section class="grid" id="product-display">
+        <section class="product-display" id="product-display">
           <h2>Click on your favourite product to select it</h2>
           <img />
           <img />
           <img />
         </section>
-        <section id="results-display">
+        <section class="results-display" id="results-display">
           <button type="button" disabled>results</button>
-          <ul></ul>
+          <!-- <ul></ul> -->
+          <div class="bar-chart-container chart-container">
+            <canvas id="bar-chart"></canvas>
+          </div>
+          <div class="pie-chart-container chart-container">
+            <canvas id="pie-chart"></canvas>
+          </div>
         </section>
       </main>
       <footer>
