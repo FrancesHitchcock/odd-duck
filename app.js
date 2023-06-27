@@ -6,6 +6,7 @@ const productImage2 = document.querySelector("section img:nth-child(3)");
 const productImage3 = document.querySelector("section img:nth-child(4)");
 const productSection = document.querySelector("section");
 const resultsButton = document.querySelector("button");
+const resultsList = document.querySelector("ul");
 
 let rounds = 0;
 const maxRounds = 5;
@@ -82,6 +83,11 @@ function handleProductClick(event) {
 
 function displayResults() {
   console.log("results");
+  for (let i = 0; i < allProducts.length; i++) {
+    let li = document.createElement("li");
+    li.textContent = `${allProducts[i].name} was viewed ${allProducts[i].timesShown} and was selected ${allProducts[i].timesClicked} times.`;
+    resultsList.appendChild(li);
+  }
 }
 
 const bag = new Product("bag");
