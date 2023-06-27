@@ -92,6 +92,7 @@ function handleProductClick(event) {
 function displayResults() {
   renderBarChart();
   renderPieChart();
+  resultsButton.disabled = true;
 }
 
 function renderBarChart() {
