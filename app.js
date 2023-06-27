@@ -29,45 +29,22 @@ function getRandomIndex() {
 }
 
 function renderProducts() {
-  //   console.log(previousViews);
-
+  console.log(previousViews);
   let product1Index = getRandomIndex();
-
-  while (previousViews.includes(product1Index)) {
-    product1Index = getRandomIndex();
-  }
-
-  //   checkPrevViews(product1Index);
-
   let product2Index = getRandomIndex();
-
-  while (previousViews.includes(product2Index)) {
-    product2Index = getRandomIndex();
-  }
-
-  //   checkPrevViews(product2Index);
-
   let product3Index = getRandomIndex();
-
-  while (previousViews.includes(product3Index)) {
-    product3Index = getRandomIndex();
-  }
-
-  //   checkPrevViews(product3Index);
 
   while (
     product1Index === product2Index ||
     product1Index === product3Index ||
-    product2Index === product3Index
+    product2Index === product3Index ||
+    previousViews.includes(product1Index) ||
+    previousViews.includes(product2Index) ||
+    previousViews.includes(product3Index)
   ) {
+    product1Index = getRandomIndex();
     product2Index = getRandomIndex();
-    while (previousViews.includes(product2Index)) {
-      product2Index = getRandomIndex();
-    }
     product3Index = getRandomIndex();
-    while (previousViews.includes(product3Index)) {
-      product3Index = getRandomIndex();
-    }
   }
 
   previousViews[0] = product1Index;
