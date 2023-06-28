@@ -14,30 +14,6 @@ const previousViews = [];
 let rounds = 0;
 const maxRounds = 5;
 
-// Save productsArray and rounds to LS. This function is invoked at the end of the handleProductClick() function.
-function saveToLocalStorage() {
-  localStorage.setItem("productsarray", JSON.stringify(allProducts));
-  localStorage.setItem("rounds", JSON.stringify(rounds));
-}
-
-// Get productsArray and rounds from LS. If products array exists in local storage then update the timesShown and timesClicked of productsArray, and the value of rounds to be equal to the values retrieved from local storage. This function is invoked when the program first runs.
-function getFromLocalStorage() {
-  const productsArrayFromLS = JSON.parse(localStorage.getItem("productsarray"));
-  const roundsFromLS = JSON.parse(localStorage.getItem("rounds"));
-  if (productsArrayFromLS) {
-    for (let i = 0; i < allProducts.length; i++) {
-      allProducts[i].timesShown = productsArrayFromLS[i].timesShown;
-      allProducts[i].timesClicked = productsArrayFromLS[i].timesClicked;
-    }
-    rounds = roundsFromLS;
-  }
-}
-
-// Clear local storage. This function is invoked at the end of the displayResults() function.
-function clearLocalStorage() {
-  localStorage.clear();
-}
-
 productSection.addEventListener("click", handleProductClick);
 
 function Product(name) {
@@ -53,6 +29,7 @@ function getRandomIndex() {
 }
 
 function renderProducts() {
+  console.log(previousViews);
   let product1Index = getRandomIndex();
   let product2Index = getRandomIndex();
   let product3Index = getRandomIndex();
@@ -73,6 +50,8 @@ function renderProducts() {
   previousViews[0] = product1Index;
   previousViews[1] = product2Index;
   previousViews[2] = product3Index;
+
+  //   console.log(previousViews);
 
   allProducts[product1Index].timesShown++;
   allProducts[product2Index].timesShown++;
@@ -105,15 +84,14 @@ function handleProductClick(event) {
       resultsButton.disabled = false;
       resultsButton.addEventListener("click", displayResults);
     }
-    saveToLocalStorage();
     renderProducts();
   }
+  return;
 }
 
 function displayResults() {
   renderBarChart();
   renderPieChart();
-  clearLocalStorage();
   resultsButton.disabled = true;
 }
 
@@ -247,7 +225,5 @@ const tauntaun = new Product("tauntaun");
 const unicorn = new Product("unicorn");
 const waterCan = new Product("water-can");
 const wineGlass = new Product("wine-glass");
-
-getFromLocalStorage();
 
 renderProducts();
